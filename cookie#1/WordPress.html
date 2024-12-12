@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Notice</title>
+    <style>
+        .cookie-notice {
+            opacity: 0; 
+            visibility: hidden; 
+            position: fixed;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        .cookie-notice.show {
+            opacity: 1; 
+            visibility: visible; 
+        }
+
+        .cookie-image {
+            width: 50px;
+            height: auto;
+            margin-right: 20px;
+        }
+
+        .cookie-text h2 {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .cookie-text p {
+            margin: 10px 0 0 0;
+            font-size: 1em;
+            color: #333;
+        }
+
+        .cookie-btn {
+            background-color: #ff8c42;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .cookie-btn:hover {
+            background-color: #ff6e0d;
+        }
+
+        @media (min-width: 1025px) {
+            .cookie-notice {
+                top: 20px;
+                right: 20px;
+                width: 300px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .cookie-image {
+                margin-bottom: 10px;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .cookie-notice {
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 350px;
+                flex-direction: row;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .cookie-notice {
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 90%;
+                flex-direction: column;
+                text-align: center;
+            }
+            .cookie-image {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cookie-notice">
+        <div class="cookie-content">
+            <img src="https://raw.githubusercontent.com/danghuutruong/cookie/main/cookie%231/biscuit_no_background.png
+            " alt="Cookie" class="cookie-image">
+            <div class="cookie-text">
+                <h2>Xin chào bạn</h2>
+                <p>
+                    Chúng tôi sử dụng cookies để cung cấp trải nghiệm tốt nhất. Bằng cách tiếp tục sử dụng trang web này, bạn đồng ý với việc sử dụng cookies của chúng tôi.
+                </p>
+            </div>
+            <button class="cookie-btn">ĐỒNG Ý</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const cookieNotice = document.querySelector(".cookie-notice");
+            if (!sessionStorage.getItem("cookieAccepted")) {
+                setTimeout(() => {
+                    cookieNotice.classList.add("show");
+                }, 300); 
+            }
+            document.querySelector(".cookie-btn").addEventListener("click", function () {
+                sessionStorage.setItem("cookieAccepted", "true");
+                cookieNotice.classList.remove("show");
+                setTimeout(() => {
+                    cookieNotice.style.display = "none";
+                }, 500); 
+            });
+        });
+    </script>
+</body>
+</html>
